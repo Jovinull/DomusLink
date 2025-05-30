@@ -4,7 +4,7 @@ import { Input } from '@/components/input'
 import { Button } from '@/components/button'
 import { useBrokerStore } from '@/store/useBrokerStore'
 import { useState } from 'react'
-import { initMqttConnection } from '@/service/mqtt'
+import { initMqttConnection } from '@/services/mqtt'
 import { router } from 'expo-router'
 
 export default function Settings() {

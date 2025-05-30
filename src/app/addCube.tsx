@@ -4,7 +4,7 @@ import { Input } from '@/components/input'
 import { Button } from '@/components/button'
 import { useState } from 'react'
 import { useCubeStore } from '@/store/useCubeStore'
-import { initMqttConnection } from '@/service/mqtt'
+import { initMqttConnection } from '@/services/mqtt'
 import { router } from 'expo-router'
 import uuid from 'react-native-uuid'
 
