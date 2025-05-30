@@ -9,7 +9,7 @@ export default function Home() {
 
       <TouchableOpacity
         style={styles.fab}
-        onPress={() => router.push('./add-cube')}
+        onPress={() => router.push('./addCube')}
       >
         <Text style={styles.fabText}>＋</Text>
       </TouchableOpacity>

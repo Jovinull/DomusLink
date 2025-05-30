@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { useCubeStore } from '@/store/useCubeStore'
 import { initMqttConnection } from '@/service/mqtt'
 import { router } from 'expo-router'
-import { v4 as uuidv4 } from 'uuid'
+import uuid from 'react-native-uuid'
 
 export default function AddCube() {
   const [name, setName] = useState('')
@@ -18,8 +18,10 @@ export default function AddCube() {
       return Alert.alert('Preencha todos os campos!')
     }
 
+    const id = uuid.v4().toString() // compatível com Hermes
+
     addCube({
-      id: uuidv4(),
+      id,
       name,
       topic,
     })
