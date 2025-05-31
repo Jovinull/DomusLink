@@ -1,4 +1,3 @@
-// src/services/mqtt.ts
 import { connect, MqttClient } from '@taoqf/react-native-mqtt'
 import { useBrokerStore } from '@/store/useBrokerStore'
 import { useCubeStore } from '@/store/useCubeStore'
@@ -13,19 +12,16 @@ export function initMqttConnection() {
     mqttClient.end()
   }
 
-  mqttClient = connect(brokerUrl)
+  mqttClient = connect(brokerUrl, {
+    username: 'jovinull',
+    password: 'Secret123',
+    reconnectPeriod: 5000,
+    clientId: `app-client-${Math.random().toString(16).substr(2, 8)}`
+  })
 
   mqttClient.on('connect', () => {
-    console.log('[MQTT] Conectado ao broker:', brokerUrl)
-
     cubes.forEach((cube) => {
-      mqttClient?.subscribe(cube.topic, (err) => {
-        if (!err) {
-          console.log(`[MQTT] Inscrito em ${cube.topic}`)
-        } else {
-          console.warn(`[MQTT] Erro ao inscrever em ${cube.topic}`, err)
-        }
-      })
+      mqttClient?.subscribe(cube.topic)
     })
   })
 
@@ -36,13 +32,11 @@ export function initMqttConnection() {
       updateCubeValue(cube.id, value)
     }
   })
-
-  mqttClient.on('error', (err) => {
-    console.error('[MQTT] Erro:', err)
-  })
 }
 
 export function disconnectMqtt() {
-  mqttClient?.end()
-  mqttClient = null
+  if (mqttClient) {
+    mqttClient.end()
+    mqttClient = null
+  }
 }
