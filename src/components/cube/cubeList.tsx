@@ -10,6 +10,8 @@ export function CubeList() {
     <FlatList
       data={cubes}
       keyExtractor={(item) => item.id}
+      numColumns={2}
+      columnWrapperStyle={{ justifyContent: 'space-between' }}
       contentContainerStyle={{ paddingBottom: 32 }}
       renderItem={({ item }) => (
         <Cube

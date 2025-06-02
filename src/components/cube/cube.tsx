@@ -1,5 +1,7 @@
 // src/components/cube/Cube.tsx
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Dimensions } from 'react-native'
+
+const CARD_WIDTH = (Dimensions.get('window').width - 64) / 2
 
 type Props = {
   name: string
@@ -10,7 +12,7 @@ type Props = {
 export function Cube({ name, value, lastUpdated }: Props) {
   return (
     <View style={styles.container}>
-      <Text style={styles.name}>{name}</Text>
+      <Text style={styles.title}>{name}</Text>
       <Text style={styles.value}>{value}</Text>
       <Text style={styles.date}>{lastUpdated}</Text>
     </View>
@@ -19,29 +21,31 @@ export function Cube({ name, value, lastUpdated }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFFFFF',
-    padding: 16,
+    width: CARD_WIDTH,
+    backgroundColor: '#fff',
     borderRadius: 12,
+    paddingVertical: 16,
+    paddingHorizontal: 12,
+    marginBottom: 16,
     elevation: 4,
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    marginVertical: 8,
-    width: '100%',
   },
-  name: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#333',
+  title: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#444',
+    marginBottom: 4,
   },
   value: {
-    fontSize: 24,
-    fontWeight: '600',
+    fontSize: 20,
+    fontWeight: 'bold',
     color: '#E15610',
-    marginVertical: 4,
+    marginBottom: 4,
   },
   date: {
-    fontSize: 12,
-    color: '#888',
+    fontSize: 10,
+    color: '#999',
   },
 })
